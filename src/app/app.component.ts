@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs';
+import * as PostAction from './action/post/post.action'
+import { Post } from './model/post/post.model'
 
 interface AppState {
-   message: string
+   post: Post
 }
 @Component({
   selector: 'app-root',
@@ -12,16 +14,32 @@ interface AppState {
 })
 export class AppComponent {
   title = 'ai-donate-box';
-  message :Observable<string>
+  post :Observable<Post>
+  text: string;
   constructor(private store: Store<AppState>){
-    this.message =this.store.select('message')
+    this.post =this.store.select('post')
+  }
+  editText(){
+    this.store.dispatch(new PostAction.EditText(this.text));
   }
 
-  spanishMessage(){
-    this.store.dispatch({type: 'SPANISH'})
+  resetPost(){
+    this.store.dispatch(new PostAction.Reset());
   }
 
-  frenchMessage(){
-    this.store.dispatch({type: 'FRENCH'})
+  upvote(){
+    this.store.dispatch(new PostAction.Upvote());
   }
+
+  downvote(){
+    this.store.dispatch(new PostAction.Downvote());
+  }
+
+  // spanishMessage(){
+  //   this.store.dispatch({type: 'SPANISH'})
+  // }
+
+  // frenchMessage(){
+  //   this.store.dispatch({type: 'FRENCH'})
+  // }
 }

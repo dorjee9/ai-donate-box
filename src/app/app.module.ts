@@ -7,7 +7,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store'
 import { simpleReducer } from './reducer/simple/simple.reducer';
-
+import { postReducer } from './reducer/post/post.reducer';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent
@@ -17,7 +18,8 @@ import { simpleReducer } from './reducer/simple/simple.reducer';
     AppRoutingModule,
     MatSlideToggleModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({ message: simpleReducer})
+    FormsModule,
+    StoreModule.forRoot({  post: postReducer, message1: simpleReducer})
   ],
   providers: [
     provideClientHydration()
