@@ -9,17 +9,24 @@ import { StoreModule } from '@ngrx/store'
 import { simpleReducer } from './reducer/simple/simple.reducer';
 import { postReducer } from './reducer/post/post.reducer';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HomeComponent } from './home';
+import { RegisterComponent } from './account/register.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatSlideToggleModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     FormsModule,
-    StoreModule.forRoot({  post: postReducer, message1: simpleReducer})
+    StoreModule.forRoot({  post: postReducer, message1: simpleReducer}),
   ],
   providers: [
     provideClientHydration()
